@@ -1,6 +1,7 @@
 package com.example.patterns_banking.services.proxy;
 
 import com.example.patterns_banking.dtos.AccountDTO;
+import com.example.patterns_banking.dtos.CustomerDTO;
 import com.example.patterns_banking.factory.AccountFactoryProvider;
 import com.example.patterns_banking.models.Account;
 import com.example.patterns_banking.repositories.IAccountRepository;
@@ -10,6 +11,9 @@ import com.example.patterns_banking.services.commands.DepositCommand;
 import com.example.patterns_banking.services.commands.ICommand;
 import com.example.patterns_banking.services.commands.WithdrawCommand;
 import org.springframework.stereotype.Component;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class AccountOperationsProxy implements IAccountOperations {
@@ -43,9 +47,17 @@ public class AccountOperationsProxy implements IAccountOperations {
     return command.execute();
   }
 
+
+
   private void validateTransaction(Account account, Double amount) {
     if (amount > 999999999) {
       throw new IllegalArgumentException("La cuenta " + account.getAccountNumber() + " ha excedido el limite de 999999999 por transaccion");
     }
   }
+
+
+
+
+
+
 }

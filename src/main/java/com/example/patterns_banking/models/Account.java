@@ -36,4 +36,30 @@ public abstract class Account {
     double fee = calculateWithdrawalFee(amount);
     this.balance -= (amount + fee);
   }
+
+  //  Crear un nuevo decorador para controlar qué tanto dinero se le puede prestar a una persona en un retiro
+//  LIMITE sobre retiros: 20.000
+//  Vamos a mostrar el valor excedido y vamos a dejar la cuenta en 0
+//  I: 50k
+//  W: 60k
+//  T: 70k
+//  Se hizo el retiro y el excedente fue de 10k
+//  La cuenta me queda vacíá
+
+  public void lend(Double amount) {
+
+    double fee = 0.0;
+
+    fee=amount+20000;
+    withdraw(fee);
+
+
+    if (amount > 20000) {
+      fee = amount - 20000;
+    }
+
+    this.balance=amount-fee;
+
+  }
+
 }

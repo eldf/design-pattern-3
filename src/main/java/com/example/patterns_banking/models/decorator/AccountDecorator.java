@@ -82,4 +82,11 @@ public abstract class AccountDecorator extends Account {
   public void deposit(Double amount) {
     account.deposit(amount);
   }
+
+  @Override
+  public void lend(Double amount) {
+    account.deposit(amount);
+  }
+
+
 }
